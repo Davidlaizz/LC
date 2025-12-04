@@ -1,6 +1,6 @@
 import java.util.*;
 
-class LC210 {
+class LC210_bfs_dfs {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         int[] indegrees = new int[numCourses];
         List<List<Integer>> adjacency = new ArrayList<>();

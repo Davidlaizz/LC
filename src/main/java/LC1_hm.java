@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class LC1 {
+public class LC1_hm {
     public int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> ht = new HashMap<Integer, Integer>();
         for(int i = 0; i < nums.length; i++){

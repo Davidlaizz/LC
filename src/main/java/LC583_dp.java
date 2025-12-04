@@ -1,4 +1,4 @@
-public class LC583 {
+public class LC583_dp {
     public int minDistance(String word1, String word2) {
         int n1 = word1.length();
         int n2 = word2.length();

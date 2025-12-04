@@ -1,4 +1,4 @@
-public class LC516 {
+public class LC516_dp {
     public int longestPalindromeSubseq(String s) {
         int n = s.length();
         //表示区间范围[i,j] （注意是左闭右闭）的串

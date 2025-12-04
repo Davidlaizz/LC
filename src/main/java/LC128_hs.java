@@ -1,7 +1,7 @@
 import java.util.HashSet;
 import java.util.Set;
 
-public class LC128 {
+public class LC128_hs {
     public int longestConsecutive(int[] nums) {
         Set<Integer> hs = new HashSet<>();
         for(int i = 0; i < nums.length; i++){

@@ -1,4 +1,4 @@
-public class LC392 {
+public class LC392_dp {
     //贪心
     public boolean isSubsequence1(String s, String t) {
         int n1 = s.length();

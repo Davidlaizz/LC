@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class LC77 {
+public class LC77_bk {
     List<List<Integer>> res;
     List<Integer> row;
     public List<List<Integer>> combine(int n, int k) {

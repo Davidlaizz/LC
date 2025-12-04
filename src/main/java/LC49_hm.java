@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class LC49 {
+public class LC49_hm {
     public List<List<String>> groupAnagrams(String[] strs) {
         Map<String, List<String>> ht = new HashMap<>();
         for(String str : strs){

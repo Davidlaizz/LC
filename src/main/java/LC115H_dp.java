@@ -1,4 +1,4 @@
-class LC115H {
+class LC115H_dp {
     public int numDistinct(String s, String t) {
         int n1 = s.length();
         int n2 = t.length();

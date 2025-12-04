@@ -6,7 +6,7 @@ import java.util.Queue;
 /**
  * @Date: 2025/11/30
  */
-class LC207 {
+class LC207_bfs_dfs {
     public boolean canFinishBFS(int numCourses, int[][] prerequisites) {
         //初始化
         int indegrees[] = new int[numCourses];

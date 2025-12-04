@@ -1,6 +1,4 @@
-import java.util.Stack;
-
-public class LC647H {
+public class LC647H_dp {
     public int countSubstrings(String s) {
         int n = s.length();
         //表示区间范围[i,j] （注意是左闭右闭）的子串是否是回文子串
