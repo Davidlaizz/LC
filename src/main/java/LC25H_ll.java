@@ -76,7 +76,7 @@ public class LC25H_ll {
                 kth--;
                 cur = cur.next;
             }
-            System.out.println(kth);
+//            System.out.println(kth);
             //最后一组可能不用处理，跳出
             if(cur == null){
                 break;
