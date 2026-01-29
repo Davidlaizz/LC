@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class LC239_pre_hm {
+public class LC560_pre_hm {
     public int subarraySum(int[] nums, int k) {
         // 前缀和:出现次数
         Map<Integer, Integer> hm = new HashMap<>();
