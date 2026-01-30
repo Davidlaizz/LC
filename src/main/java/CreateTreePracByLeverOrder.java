@@ -1,6 +1,8 @@
 import java.util.LinkedList;
 import java.util.Queue;
-
+/*
+    https://zhuanlan.zhihu.com/p/1894733712882653065
+ */
 public class CreateTreePracByLeverOrder {
     public static void main(String[] args) {
         Integer[] levelArr = {1, 2, 3, null, 4, 5};
