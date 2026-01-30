@@ -65,7 +65,7 @@ public class LC25H_ll {
 
 
 
-    public ListNode reverseKGroup(ListNode head, int k) {
+    public ListNode reverseKGroup2(ListNode head, int k) {
         ListNode prehead = new ListNode(0, head);
         ListNode groupPre = prehead;
         while(true){

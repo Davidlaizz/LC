@@ -1,4 +1,5 @@
 import java.util.HashSet;
+import java.util.Set;
 
 public class LC141_ll_hs_2p {
     public boolean hasCycle(ListNode head) {
@@ -15,7 +16,7 @@ public class LC141_ll_hs_2p {
         return false;
     }
 
-    public boolean hasCycle(ListNode head) {
+    public boolean hasCycle2(ListNode head) {
         if(head == null) return false;
         ListNode slow = head, fast = head.next;
         while(fast != null && fast.next != null){

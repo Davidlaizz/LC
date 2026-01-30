@@ -23,7 +23,7 @@ public class LC206_ll_2p_rec {
     }
 
 
-    public ListNode reverseList(ListNode head) {
+    public ListNode reverseList2(ListNode head) {
         return reverse(null, head);
     }
 

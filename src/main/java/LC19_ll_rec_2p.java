@@ -33,7 +33,7 @@ public class LC19_ll_rec_2p {
         return;
     }
 
-    public ListNode removeNthFromEnd(ListNode head, int n) {
+    public ListNode removeNthFromEnd2(ListNode head, int n) {
         ListNode prehead = new ListNode(0, head);
         //快慢指针
         ListNode fast = prehead, slow = prehead;

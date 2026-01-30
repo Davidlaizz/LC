@@ -26,7 +26,7 @@ public class LC142_ll_hs_2p {
         return null;
     }
 
-    public ListNode detectCycle(ListNode head) {
+    public ListNode detectCycle2(ListNode head) {
         if(head == null || head.next == null) return null;
         ListNode slow = head, fast = head;
         //推理出a = b + nc, 因为这个推理，所以fast = head
