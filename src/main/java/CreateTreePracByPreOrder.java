@@ -3,6 +3,7 @@ import java.util.Queue;
 
 /*
     https://zhuanlan.zhihu.com/p/1894733712882653065
+    LC297
  */
 public class CreateTreePracByPreOrder {
     public static void main(String[] args) {

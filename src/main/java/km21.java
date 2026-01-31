@@ -20,7 +20,9 @@ public class km21{
             int n = preorderChar.length;
             TreeNode root = ts.buildTree(inorderChar, 0, n,
                     preorderChar, 0 , n);
-            ts.postorder(root);
+
+            //有更简单的方法，64行
+            //ts.postorder(root);
             System.out.println("");
         }
 
@@ -58,6 +60,10 @@ public class km21{
         // 构建子树, 切分数组, 建议画图理解leftSize
         root.left = buildTree(inorder, inStart, index, preorder, preStart + 1, preStart + leftSize + 1);
         root.right = buildTree(inorder, index + 1, inEnd, preorder, preStart + leftSize + 1, preEnd);
+
+        // 这里直接输出就是后序遍历 不用造完树再后序树
+        System.out.print(rootVal);
+
         return root;
     }
 
