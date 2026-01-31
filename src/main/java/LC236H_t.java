@@ -8,7 +8,7 @@ public class LC236H_t {
         TreeNode r = lowestCommonAncestor(root.right, p, q);
         if(l == null && r == null) return null; //未找到
         if(l != null && r != null) return root; //刚找到root就是最近祖先
-        if(l != null && r == null) return l;
+        if(l != null && r == null) return l; //子树已经找到了（可能是一个，有可能是两个（pq在一条树枝上）。）
         if(l == null && r != null) return r;
         return null;
     }
