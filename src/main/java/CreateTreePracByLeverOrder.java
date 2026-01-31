@@ -1,3 +1,5 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 /*
@@ -8,6 +10,7 @@ public class CreateTreePracByLeverOrder {
         Integer[] levelArr = {1, 2, 3, null, 4, 5};
         TreeNode root = createByLevelOrder(levelArr);
         System.out.println(root);
+        levelTrave(root);
     }
 
     /**
@@ -39,4 +42,36 @@ public class CreateTreePracByLeverOrder {
         return root;
     }
 
+    public static void levelTrave(TreeNode root){
+        if(root == null) return;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+        while(!q.isEmpty()){
+            int size = q.size();
+            // 关键标记：假设下一层全是 Null
+            boolean hasNextLevelNode = false;
+            while(size-- > 0){
+                TreeNode cur = q.poll();
+                if (cur != null) {
+                    System.out.print(cur.val + " ");
+                    q.offer(cur.left);
+                    q.offer(cur.right);
+
+                    // 侦查：如果发现任何一个孩子是真实存在的，说明下一层不是全空的
+                    if (cur.left != null || cur.right != null) {
+                        hasNextLevelNode = true;
+                    }
+                }else{
+                    System.out.print("Null ");
+                }
+            }
+            System.out.println();
+            // 刹车机制：
+            // 如果遍历完这一层，发现下一层没有一个真实节点（全是占位的 Null）
+            // 直接跳出循环，不再处理下一层
+            if (!hasNextLevelNode) {
+                break;
+            }
+        }
+    }
 }
