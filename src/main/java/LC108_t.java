@@ -22,26 +22,26 @@ public class LC108_t {
         Queue<TreeNode> nodeQ = new ArrayDeque<>();
         Queue<Integer> leftQ = new ArrayDeque<>(); //下标
         Queue<Integer> rightQ = new ArrayDeque<>(); //下标
-        TreeNode root = new TreeNode(-1); // 先创建节点，后续会改具体val
+        TreeNode root = new TreeNode(nums[(0 + nums.length - 1) / 2]);
         nodeQ.offer(root);
         leftQ.offer(0);
         rightQ.offer(nums.length - 1);
-        while(!nodeQ.isEmpty()){ //不空表示有节点没有被正确赋值val
+        while (!nodeQ.isEmpty()) { //不空表示有节点,尝试处理左右子树
             TreeNode node = nodeQ.poll();
             int l = leftQ.poll();
             int r = rightQ.poll();
             int mid = (l + r) / 2;
-            //真正赋值 根
-            node.val = nums[mid];
             //处理左右子树
-            if(l <= mid - 1){ //是否有左子树
-                node.left = new TreeNode(-1); //先连接，保证有这个节点，后续循环再赋值
+            if (l <= mid - 1) { //是否有左子树
+                int mmid = (l + mid - 1) / 2;
+                node.left = new TreeNode(nums[mmid]); //先连接，保证有这个节点，后续循环再赋值
                 nodeQ.offer(node.left);
                 leftQ.offer(l);
                 rightQ.offer(mid - 1);
             }
-            if(r >= mid + 1){
-                node.right = new TreeNode(-1);
+            if (r >= mid + 1) {
+                int mmid = (r + mid + 1) / 2;
+                node.right = new TreeNode(nums[mmid]);
                 nodeQ.offer(node.right);
                 leftQ.offer(mid + 1);
                 rightQ.offer(r);
