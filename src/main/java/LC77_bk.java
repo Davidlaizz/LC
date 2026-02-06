@@ -21,7 +21,8 @@ public class LC77_bk {
             row.add(i);
             backTracking(n, k, i + 1);
             // row.remove((Integer)i);
-            row.removeLast();
+//            row.removeLast();
+            row.remove(row.size() - 1);
         }
 
     }

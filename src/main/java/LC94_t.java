@@ -21,7 +21,9 @@ public class LC94_t {
 
     //重点：栈代替递归
     public List<Integer> inorderTraversal2(TreeNode root) {
-        if(root == null) return List.of();
+        if(root == null)
+            return new ArrayList<>();
+//            return List.of();
         List<Integer> res = new ArrayList<>();
         //迭代，用Stack代替递归
         Deque<TreeNode> stack = new ArrayDeque<>();

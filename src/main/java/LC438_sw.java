@@ -8,7 +8,9 @@ public class LC438_sw {
             List<Integer> res = new ArrayList<>();
             int ns = s.length();
             int np = p.length();
-            if(np > ns) return List.of();
+            if(np > ns)
+                return res;
+//                return List.of();
             int sCount[] = new int[26];
             int pCount[] = new int[26];
             //初始化pCount

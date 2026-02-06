@@ -23,18 +23,20 @@ public class LC113_t {
         if(root.left != null){
             path.add(root.left.val);
             backTracking(root.left, targetSum - root.left.val, path, res);
-            path.removeLast();
+//            path.removeLast();
+            path.remove(path.size() - 1);
         }
         if(root.right != null){
             path.add(root.right.val);
             backTracking(root.right, targetSum - root.right.val, path, res);
-            path.removeLast();
+//            path.removeLast();
+            path.remove(path.size() - 1);
         }
     }
 
     public List<List<Integer>> pathSum2(TreeNode root, int targetSum) {
-        if(root == null) return List.of();
         List<List<Integer>> res = new ArrayList<>();
+        if(root == null) return res;
         Stack<TreeNode> s = new Stack<>();
         Stack<List<Integer>> sp = new Stack<>();
         Stack<Integer> si = new Stack<>();
@@ -59,14 +61,16 @@ public class LC113_t {
                     s.push(node.left);
                     path.add(node.left.val);
                     sp.push(new ArrayList<>(path));
-                    path.removeLast();
+//                    path.removeLast();
+                    path.remove(path.size() - 1);
                     si.push(value + node.left.val);
                 }
                 if(node.right != null){
                     s.push(node.right);
                     path.add(node.right.val);
                     sp.push(new ArrayList<>(path));
-                    path.removeLast();
+//                    path.removeLast();
+                    path.remove(path.size() - 1);
                     si.push(value + node.right.val);
                 }
             }else{

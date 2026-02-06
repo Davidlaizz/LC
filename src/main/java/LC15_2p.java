@@ -18,7 +18,8 @@ public class LC15_2p {
             while(l < r){
                 int sum = nums[l] + nums[r];
                 if(sum == target){
-                    res.add(List.of(nums[i], nums[l], nums[r]));
+//                    res.add(List.of(nums[i], nums[l], nums[r]));
+                    res.add(Arrays.asList(nums[i], nums[l], nums[r]));
                     l++;
                     r--;
                     // 跳过重复元素

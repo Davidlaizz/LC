@@ -35,12 +35,14 @@ public class LC257H_t {
         if(node.left != null){
             backTracking(node.left, path, res);
             //回溯
-            path.removeLast();
+//            path.removeLast();
+            path.remove(path.size() - 1);
         }
         if(node.right != null){
             backTracking(node.right, path, res);
             //回溯
-            path.removeLast();
+//            path.removeLast();
+            path.remove(path.size() - 1);
         }
     }
 
