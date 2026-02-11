@@ -1,0 +1,50 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Scanner;
+
+public class LC46_bt {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while(sc.hasNext()){
+            String str = sc.nextLine();
+            str = str.substring(1, str.length() - 1);
+            String[] arr = str.split(",");
+            int[] data = new int[arr.length];
+            for(int i = 0; i < data.length; i++){
+                data[i] = Integer.parseInt(arr[i]);
+            }
+            LC46_bt slove = new LC46_bt();
+            List<List<Integer>> r = slove.permute(data);
+            System.out.println(r.toString());
+        }
+
+    }
+
+    List<List<Integer>> res = new ArrayList<>();
+    LinkedList<Integer> row = new LinkedList<>();
+    boolean[] used;
+    public List<List<Integer>> permute(int[] nums) {
+        used = new boolean[nums.length];
+        backTracking(nums);
+        return res;
+    }
+    public void backTracking(int[] nums){
+        if(row.size() == nums.length){
+            res.add(new ArrayList<>(row));
+            return;
+        }
+        for(int i = 0; i < nums.length; i++){
+            if(used[i]){
+                continue; //重复则跳过 也可以使用row.contains(nums[i])
+            }
+            used[i] = true;
+            row.add(nums[i]);
+            backTracking(nums);
+            row.removeLast();
+//            row.remove(rowg.size() - 1);
+            used[i] = false;
+        }
+    }
+}
