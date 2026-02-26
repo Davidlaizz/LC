@@ -1,0 +1,28 @@
+public class LC33_bs {
+    public int search(int[] nums, int target) {
+        int left = 0, right = nums.length - 1;
+        while (left <= right) {
+            int mid = left + ( right - left) / 2;
+            if (nums[mid] == target) {
+                return mid;
+            }
+            // 判断是否是左侧顺序数组，右侧循环数组
+            if (nums[mid] > nums[right]) {
+                // 左侧顺序数组
+                if (nums[left] <= target && target < nums[mid]) {
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
+            } else {
+                // 右侧顺序数组
+                if (nums[mid] < target && target <= nums[right]) {
+                    left = mid + 1;
+                } else {
+                    right = mid - 1;
+                }
+            }
+        }
+        return -1;
+    }
+}
