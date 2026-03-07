@@ -1,7 +1,7 @@
 import java.util.Deque;
 import java.util.LinkedList;
 
-public class LC42_2p_ms {
+public class LC42_2p_msta {
     public int trap(int[] height) {
         int l = 0, r = height.length - 1;
         int lmax = height[l];
