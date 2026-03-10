@@ -105,7 +105,7 @@ public class LC912_ms_qs_muban {
                 j--;
             }
         }
-        System.out.println(Arrays.toString(nums));
+//        System.out.println(Arrays.toString(nums));
         return j;
     }
 
