@@ -109,10 +109,61 @@ public class LC912_ms_qs_muban {
         return j;
     }
 
+    /*
+     循环不变量（始终保持）：
+
+     [L ... less]         < pivot
+     [less+1 ... index-1] = pivot
+     [index ... more-1]   未处理
+     [more ... R]         > pivot
+    */
+    /*
+        划分结束后数组结构：
+
+        [L ... less]        < pivot
+        [less+1 ... more-1] = pivot
+        [more ... R]        > pivot
+    */
+    // 荷兰国旗 三路快排
+    private void partition3(int[] nums, int L, int R) {
+        // 递归终止条件：区间只有0个或1个元素
+        if (L >= R) return;
+        // 选择基准值 pivot，也可以是随机值
+        int pivot = nums[L];
+        // index: 当前扫描的位置
+        int index = L;
+        // less: 小于 pivot 区域的右边界
+        // 初始为 L-1 表示 <pivot 区域还不存在
+        int less = L - 1;
+        // more: 大于 pivot 区域的左边界
+        // 初始为 R+1 表示 >pivot 区域还不存在
+        int more = R + 1;
+
+        while (index < more) {
+            // 当前元素等于 pivot
+            // 扩大 =pivot 区域
+            if (nums[index] == pivot) {
+                index++;
+            }
+            // 交换到 <pivot 区域
+            else if (nums[index] < pivot) {
+                swap(nums, index++, ++less);
+            }
+            // 交换到 >pivot 区域
+            else {
+                swap(nums, index, --more);
+                // 注意这里 index 不++，因为换回来的元素还没比较过
+            }
+        }
+        // 递归处理小于 pivot 的部分
+        partition3(nums, L, less);
+        // 递归处理大于 pivot 的部分
+        partition3(nums, more, R);
+    }
+
     public void swap(int[] nums, int l, int r) {
         int temp = nums[l];
         nums[l] = nums[r];
         nums[r] = temp;
-
     }
 }
