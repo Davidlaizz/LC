@@ -1,9 +1,6 @@
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
-public class LC94_t {
+public class LC94_t_muban {
     List<Integer> res = new ArrayList<>();
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
@@ -19,7 +16,31 @@ public class LC94_t {
         inorder(root.right, res);
     }
 
-    //重点：栈代替递归
+    //重点：栈代替递归 通用模板
+    public List<Integer> inorderTraversal3(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        if (root == null)
+            return res;
+        Deque<TreeNode> s = new LinkedList<>();
+        s.push(root);
+        while (!s.isEmpty()) {
+            TreeNode node = s.pop();
+            if (node != null) {
+                if (node.right != null)
+                    s.push(node.right);
+                s.push(node);
+                s.push(null);
+                if (node.left != null)
+                    s.push(node.left);
+            } else {
+                TreeNode cur = s.pop();
+                res.add(cur.val);
+            }
+        }
+        return res;
+    }
+
+    // 传统的栈替代方法
     public List<Integer> inorderTraversal2(TreeNode root) {
         if(root == null)
             return new ArrayList<>();

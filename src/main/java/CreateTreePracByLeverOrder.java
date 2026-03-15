@@ -18,7 +18,7 @@ public class CreateTreePracByLeverOrder {
      * 通过带空指针信息的层序遍历构建树, 核心是通过队列来逐层处理
      */
     public static TreeNode createByLevelOrder(Integer[] arr) {
-        Queue<TreeNode> queue = new LinkedList<>();
+        Deque<TreeNode> queue = new LinkedList<>();
         if(arr.length == 0 || arr[0] == null) {
             return null;
         }

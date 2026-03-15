@@ -1,12 +1,42 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * @Date: 2025/11/30
  */
 class LC207_bfs_dfs {
+    // 只用数组完成，「检查是否有新学科能学,加入学习队列」会影响查询效率
+    public boolean canFinishBFSArray(int numCourses, int[][] prerequisites) {
+        // 统计各学科的入度数量(还要先学几科)
+        int[] need = new int[numCourses];
+        for (int[] pair : prerequisites) {
+            need[pair[0]]++;
+        }
+        // 入队可以学的科目编号
+        Deque<Integer> now = new ArrayDeque<>();
+        for (int i = 0; i < numCourses; i++) {
+            if (need[i] == 0) {
+                now.offer(i);
+            }
+        }
+        // 学习
+        int cnt = 0;
+        while (!now.isEmpty()) {
+            int cur = now.poll();
+            cnt++;
+            // 更新检查之前不能学的科目
+            for (int[] pair : prerequisites) {
+                if (pair[1] == cur) {
+                    need[pair[0]]--;
+                    // 检查是否有新学科能学,加入学习队列
+                    if (need[pair[0]] == 0) {
+                        now.offer(pair[0]);
+                    }
+                }
+            }
+        }
+        return cnt == numCourses;
+    }
+
     public boolean canFinishBFS(int numCourses, int[][] prerequisites) {
         //初始化
         int indegrees[] = new int[numCourses];
