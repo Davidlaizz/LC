@@ -18,6 +18,7 @@ public class LC141_ll_hs_2p {
 
     public boolean hasCycle2(ListNode head) {
         if(head == null) return false;
+        // 快慢指针
         ListNode slow = head, fast = head.next;
         while(fast != null && fast.next != null){
             if(slow == fast)

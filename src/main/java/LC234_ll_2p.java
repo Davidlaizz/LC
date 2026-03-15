@@ -12,6 +12,7 @@ public class LC234_ll_2p {
     public boolean isPalindrome(ListNode head) {
         //找出中心位置
         ListNode slow = head, fast = head.next;
+        //快慢指针
         while(fast != null && fast.next != null){
             slow = slow.next;
             fast = fast.next.next;
