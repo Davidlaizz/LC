@@ -27,4 +27,7 @@ public class LC474_dp17 {
         }
         return dp[m][n];
     }
+
+    // dfs记忆化
+    // memo[index][cur_m][cur_n] = Math.max(res_skip, res_include);
 }
