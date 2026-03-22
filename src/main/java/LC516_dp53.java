@@ -1,15 +1,15 @@
-public class LC516_dp {
+public class LC516_dp53 {
     public int longestPalindromeSubseq(String s) {
         int n = s.length();
-        //表示区间范围[i,j] （注意是左闭右闭）的串
-        int dp[][] = new int[n][n];
+        //表示区间范围[i,j] （注意是左闭右闭）的串的最大值
+        int[][] dp = new int[n][n];
         for(int i = n; i >= 0; i--){
             for(int j = i; j < n; j++){
                 if(s.charAt(i) == s.charAt(j)){
-                    if(i == j){
+                    if(i == j){ // 一个元素初始化
                         dp[i][j] = 1;
                     }
-//                    else if(i + 1 == j){
+//                    else if(i + 1 == j){ // 两个元素初始化 下面cover
 //                        dp[i][j] = 2;
 //                    }
                     else{
@@ -23,14 +23,14 @@ public class LC516_dp {
         return dp[0][n - 1];
     }
 
-    //看成s和s的反串的最大公共子序列
+    //看成s和s的反串的最大公共子序列LC1143
     public int longestPalindromeSubseq2(String s) {
         int n = s.length();
         //表示区间范围[i,j] （注意是左闭右闭）的串
         StringBuilder sb = new StringBuilder(s);
         sb.reverse();
         String t = sb.toString();
-        int dp[][] = new int[n + 1][n + 1];//i - 1, j - 1为尾的最最大公共子序列大小
+        int[][] dp = new int[n + 1][n + 1];//i - 1, j - 1为尾的最最大公共子序列大小
         for(int i = 1; i <= n; i++){
             for(int j = 1; j <= n; j++){
                 if(s.charAt(i - 1) == t.charAt(j - 1)){
