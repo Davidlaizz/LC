@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class LC215H_qs_heap {
+public class LC215H_bs_qs_heap {
     public int findKthLargest(int[] nums, int k) {
         return quickSelect(nums, 0, nums.length - 1, k);
     }
@@ -41,22 +41,22 @@ public class LC215H_qs_heap {
     }
 
     // [l, r] 这个算法对重复元素或者顺序元素会退化到On^2
-    // public int lomutoPartition(int[] nums, int l, int r) {
-    //     int pivot = nums[r];
-    //     System.out.println("pivot " + pivot);
-    //     int i = l, j = l;
-    //     while (j < r) {
-    //         if (nums[j] < pivot) {
-    //             swap(nums, i, j);
-    //             // System.out.println(Arrays.toString(nums));
-    //             i++;
-    //         }
-    //         j++;
-    //     }
-    //     // System.out.println(Arrays.toString(nums));
-    //     swap(nums, i, r);
-    //     return i; // 枢轴的最后位置
-    // }
+     public int lomutoPartition(int[] nums, int l, int r) {
+         int pivot = nums[r];
+//         System.out.println("pivot " + pivot);
+         int i = l, j = l;
+         while (j < r) { // r是枢轴位置
+             if (nums[j] < pivot) {
+                 swap(nums, i, j);
+                 // System.out.println(Arrays.toString(nums));
+                 i++;
+             }
+             j++;
+         }
+         // System.out.println(Arrays.toString(nums));
+         swap(nums, i, r);
+         return i; // 枢轴的最后位置
+     }
     public void swap(int[] nums, int l, int r) {
         int temp = nums[l];
         nums[l] = nums[r];
