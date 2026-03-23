@@ -83,6 +83,9 @@ public class LC912_ms_qs_muban {
     // 效率高，对比次数少
     // 分区[l, j] [j + 1, r] // i可能==j 也可能i == j + 1
     public int partition2(int[] nums, int l, int r) {
+        // 选择j作为结果，枢轴不能选择最右边（除以2向上取整也不行）
+        // 比如[2,3,1,6],永远返回j=3,，[0,3]永远递归下去，num[3] = 6永远不变化就死循环
+        // 同理，以i作为结果[l, i - 1] [i, r] 枢轴不能选择最左边边（除以2向下取整也不行）
         int mid = l + (r - l) / 2;
         int pivot = nums[mid];
         // 左右指针
