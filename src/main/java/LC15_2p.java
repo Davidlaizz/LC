@@ -3,10 +3,17 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LC15_2p {
+    // 方法: 排序 + 双指针
+    //   思路：先排序，固定第一个数nums[i]，
+    //         在右侧区间用双指针查找两数和为-target
+    //   去重：i、l、r三个位置都要跳过重复值，避免重复三元组
+    //   剪枝：排序后若nums[i] > 0，后续三数和不可能为0，可提前结束
+    //   复杂度：时间O(n²)，空间O(1)
+    //          若计入排序栈空间，额外为O(logn)
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
-//         List<Integer> list = new ArrayList<>();
         Arrays.sort(nums);
+        // 固定第一个数nums[i]，在右侧区间用双指针查找两数和为-target
         for(int i = 0; i < nums.length; i++){
             // 跳过重复元素
             if(i >= 1 && nums[i] == nums[i - 1]) continue;
