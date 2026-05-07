@@ -2,19 +2,6 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 public class LC42_2p_msta {
-    // 方法1: 双指针 竖着算
-    //   思路：维护左右最大高度lmax/rmax，较小一侧可确定当前接水量
-    //   依据：若lmax <= rmax，则左侧位置接水量只由lmax决定
-    //         对称地，若lmax > rmax，则右侧位置接水量只由rmax决定
-    //   复杂度：时间O(n)，空间O(1)
-    // 方法2: 单调栈 横着算
-    //   栈中存的是下标(index)，不是高度值
-    //   原因：计算宽度需要左右边界下标，宽 = 右索引 - 左索引 - 1
-    //   形态：维护对应高度单调递减的下标栈
-    //   思路：遇到更高柱子时弹出栈顶作为凹槽底部，配合新栈顶和当前柱计算面积
-    //   计算：高 = min(左墙, 右墙) - 底部高度，宽 = 右索引 - 左索引 - 1
-    //   复杂度：时间O(n)，空间O(n)
-
     public int trap(int[] height) {
         int l = 0, r = height.length - 1;
         int lmax = height[l];
@@ -33,7 +20,7 @@ public class LC42_2p_msta {
                 r--;
             }
         }
-        // System.out.println(l+" "+ r);
+        System.out.println(l+" "+ r);
         return water;
     }
 
@@ -43,7 +30,7 @@ public class LC42_2p_msta {
         int water = 0;
         //从左往右遍历 记住左边的高点 横向计算
         for(int i = 0; i < height.length; i++){
-            //栈底大栈顶小：单调递减
+            //栈底大顶小：单调递减
             while(!stack.isEmpty() && height[i] > height[stack.peek()]){
                 int bottomIndex = stack.pop();
                 if (stack.isEmpty()){
