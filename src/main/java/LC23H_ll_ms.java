@@ -3,6 +3,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LC23H_ll_ms {
+    // 方法: 两两归并(分治思想)
+    //   思路：把k个有序链表按相邻两两合并，每轮把数量约减半
+    //   过程：第1轮k->k/2，第2轮k/2->k/4 ... 直到只剩1条链表
+    //   细节：当轮若链表个数为奇数，最后一条直接进入下一轮
+    //   子问题：两链表合并使用LC21的双指针合并
+    //   复杂度：时间O(N log k)，空间O(k)
+    //          N为总节点数，k为链表个数
     public ListNode mergeKLists(ListNode[] lists) {
         if(lists.length == 0){
             return null;
@@ -47,3 +54,4 @@ public class LC23H_ll_ms {
         return preehead.next;
     }
 }
+

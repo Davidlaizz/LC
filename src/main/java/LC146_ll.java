@@ -3,6 +3,13 @@ import java.util.Map;
 
 public class LC146_ll {
     class LRUCache {
+        // 方法: HashMap + 双向链表
+        //   目标：在O(1)时间完成get/put，并维护最近最少使用淘汰策略
+        //   结构：HashMap负责key到节点的O(1)定位，双向链表负责访问顺序维护
+        //   约定：链表头部是最近使用，尾部是最久未使用
+        //   get：命中后把节点移动到头部；未命中返回-1
+        //   put：已存在则更新并移动到头；不存在时头插，超容则删除尾前节点
+        //   复杂度：get/put平均时间O(1)，空间O(capacity)
 
         private Map<Integer, DLLNode> cache;
         private int capacity;

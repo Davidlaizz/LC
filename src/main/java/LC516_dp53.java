@@ -1,4 +1,16 @@
 public class LC516_dp53 {
+    // 方法: 动态规划(区间DP)
+    //   目标：求字符串的最长回文子序列长度
+    //   状态：dp[i][j]表示区间[i,j]内的最长回文子序列长度
+    //   转移：
+    //     若s[i]==s[j]：dp[i][j]=dp[i+1][j-1]+2
+    //     否则：dp[i][j]=max(dp[i+1][j], dp[i][j-1])
+    //   遍历顺序：i从右向左，j从i+1向右
+    //   边界：dp[i][i]=1
+    //   复杂度：时间O(n²)，空间O(n²)
+    //
+    // 方法2: 转化为LCS
+    //   思路：最长回文子序列 = s与s反串的最长公共子序列
     public int longestPalindromeSubseq(String s) {
         int n = s.length();
         //表示区间范围[i,j] （注意是左闭右闭）的串的最大值

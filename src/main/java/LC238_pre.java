@@ -1,5 +1,14 @@
 public class LC238_pre {
-    //前缀积和后缀积
+    // 方法1: 前缀积 + 后缀积数组
+    //   思路：prefix[i]存i左侧乘积，postfix[i]存i右侧乘积
+    //   结果：res[i] = prefix[i] * postfix[i]
+    //   复杂度：时间O(n)，空间O(n)
+    //
+    // 方法2: 空间优化(推荐)
+    //   思路：res先存前缀积，再从右向左用postfix累乘并合并到res
+    //   关键：不再单独开postfix数组，只用一个变量postfix
+    //   复杂度：时间O(n)，空间O(1)
+    //          其中返回数组res不计入额外空间
     public int[] productExceptSelf(int[] nums) {
         int n = nums.length;
         int prefix[] = new int[n]; //i(不包括i)之前的乘积
@@ -20,7 +29,6 @@ public class LC238_pre {
         return res;
     }
 
-    //优化成原地空间o1(结果数组不算)
     public int[] productExceptSelf2(int[] nums) {
         int n = nums.length;
         int res[] = new int[n];

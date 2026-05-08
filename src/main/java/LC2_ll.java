@@ -1,4 +1,11 @@
 public class LC2_ll {
+    // 方法: 链表模拟竖式加法
+    //   思路：同步遍历l1和l2，逐位相加并维护进位carry
+    //   细节：某一条链表先结束时，该位按0处理
+    //   关键：循环条件包含carry != 0，保证最后进位不会丢失
+    //   构造：用哨兵head统一处理结果链表头节点
+    //   复杂度：时间O(max(m,n))，空间O(max(m,n))
+    //          额外空间主要是结果链表节点
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode head = new ListNode();
         ListNode cur = head;

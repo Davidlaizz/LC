@@ -1,6 +1,21 @@
 import java.util.*;
 
 public class LC94_t_muban {
+    // 方法1: 递归中序
+    //   顺序：左 -> 根 -> 右
+    //   思路：递归遍历左子树，访问根，再递归遍历右子树
+    //   复杂度：时间O(n)，空间O(h)
+    //          h为树高，递归栈最坏O(n)
+    //
+    // 方法2: 传统迭代栈
+    //   顺序：左 -> 根 -> 右
+    //   思路：用指针cur不断向左入栈，回退时访问节点再转向右子树
+    //   复杂度：时间O(n)，空间O(h)
+    //
+    // 方法3: 统一迭代模板(null标记法)
+    //   思路：栈中用null作为“访问标记”，把处理节点与遍历节点拆开
+    //   特点：前中后序可统一为一套模板，改压栈顺序即可
+    //   复杂度：时间O(n)，空间O(h)
     List<Integer> res = new ArrayList<>();
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();

@@ -2,6 +2,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LC105_t {
+    // 方法: 递归分治 + HashMap定位
+    //   思路：前序第一个元素是根，中序根左侧是左子树、右侧是右子树
+    //   关键：用HashMap记录中序值->索引，O(1)定位根在中序的位置
+    //   过程：根据中序位置算出左子树长度leftSize，划分前序和中序区间后递归
+    //   区间：统一采用左闭右开[left, right)
+    //   复杂度：时间O(n)，空间O(n)
+    //          额外空间来自HashMap和递归栈
     Map<Integer, Integer> hm = new HashMap<>();
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         // val : index 方便查找中序

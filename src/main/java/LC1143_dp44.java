@@ -1,4 +1,16 @@
 public class LC1143_dp44 {
+    // 方法: 动态规划
+    //   目标：求两个字符串的最长公共子序列长度
+    //   状态：dp[i][j]表示text1[0,i-1]和text2[0,j-1]的最长公共子序列长度
+    //   转移：
+    //     若text1[i-1]==text2[j-1]：dp[i][j]=dp[i-1][j-1]+1
+    //     否则：dp[i][j]=max(dp[i-1][j], dp[i][j-1])
+    //   复杂度：时间O(m*n)，空间O(m*n)
+    //
+    // 方法2: 空间压缩
+    //   思路：用一维数组+pre变量记录dp[i-1][j-1]
+    //   关键：pre保存上一轮的dp[i-1][j-1]，cur保存当前dp[i-1][j-1]用于下一轮
+    //   复杂度：时间O(m*n)，空间O(n)
     public int longestCommonSubsequence(String text1, String text2) {
         int n1 = text1.length();
         int n2 = text2.length();

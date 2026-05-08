@@ -1,6 +1,17 @@
 import java.util.PriorityQueue;
 
 public class LC295H_heap {
+    // 方法: 双堆(大顶堆+小顶堆)
+    //   目标：实现数据流的中位数查找，支持动态添加和查询
+    //   思路：用两个堆分割数据，大顶堆存左半部分(≤中位数)，小顶堆存右半部分(>中位数)
+    //   过程：
+    //     addNum：根据num与maxHeap堆顶比较，决定放入哪个堆
+    //             放入后检查堆大小差，超过1则调整平衡
+    //             调整：堆顶元素 从一边移到另一边。
+    //     findMedian：两堆大小相等取平均，否则取maxHeap堆顶
+    //   不变量：maxHeap.size() == minHeap.size() 或 maxHeap.size() == minHeap.size() + 1
+    //   复杂度：addNum O(log n)，findMedian O(1)
+
     class MedianFinder {
         PriorityQueue<Integer> minHeap;
         PriorityQueue<Integer> maxHeap;

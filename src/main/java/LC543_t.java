@@ -3,6 +3,17 @@ import java.util.Map;
 import java.util.Stack;
 
 public class LC543_t {
+    // 方法1: 递归后序(推荐)
+    //   思路：对每个节点计算左右子树深度，直径候选为leftDepth + rightDepth
+    //   更新：在求深度的过程中同步维护全局最大直径max
+    //   本质：直径问题转化为“每个节点左右深度和”的最大值
+    //   复杂度：时间O(n)，空间O(h)
+    //
+    // 方法2: 迭代后序 + 哈希表记深度
+    //   思路：用栈模拟后序遍历(左右根)，Map记录每个节点的子树深度
+    //   更新：节点出栈处理时，基于左右深度更新当前直径并维护全局最大值
+    //   特点：避免递归，逻辑更通用但实现更繁琐
+    //   复杂度：时间O(n)，空间O(n)
     int max = 0;
     public int diameterOfBinaryTree(TreeNode root) {
         maxDep(root);

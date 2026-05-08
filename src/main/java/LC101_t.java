@@ -3,6 +3,22 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class LC101_t {
+    // 方法1: 递归镜像对比
+    //   思路：同时比较两棵子树left/right是否互为镜像
+    //   条件：节点值相等，且left.left对right.right、left.right对right.left
+    //   终止：两节点都为空返回true；一空一非空返回false
+    //   复杂度：时间O(n)，空间O(h)
+    //
+    // 方法2: 队列迭代(成对入队)
+    //   思路：每次成对取出左右镜像位置节点进行比较
+    //   入队顺序：l.left与r.right、l.right与r.left
+    //   关键：保持“镜像节点成对出现”的队列结构
+    //   复杂度：时间O(n)，空间O(n)
+    //
+    // 方法3: 队列迭代(ArrayDeque变体)
+    //   思路：与方法2一致，差别在于对null节点采用显式分支判断
+    //   注意：ArrayDeque不允许直接存null，因此需要先判空再入队
+    //   复杂度：时间O(n)，空间O(n)
     //递归
     public boolean isSymmetric(TreeNode root) {
         return check(root.left, root.right);

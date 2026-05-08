@@ -1,6 +1,17 @@
 import java.util.Arrays;
 
 public class LC300H_dp41_gr_bs {
+    // 方法1: 动态规划
+    //   目标：求最长严格递增子序列长度
+    //   状态：dp[i]表示以nums[i]结尾的最长递增子序列长度
+    //   转移：遍历j<i，若nums[j]<nums[i]，dp[i]=max(dp[i], dp[j]+1)
+    //   复杂度：时间O(n²)，空间O(n)
+    //
+    // 方法2: 贪心+二分
+    //   思路：维护数组dp，dp[index]表示长度为index+1的递增子序列的最小末尾
+    //   过程：若nums[i]>dp[index]，直接追加；否则二分找第一个>=nums[i]的位置替换
+    //   原理：末尾越小，越容易接上后续元素
+    //   复杂度：时间O(n log n)，空间O(n)
     public int lengthOfLIS(int[] nums) {
         int n = nums.length;
         int[] dp = new int[n];

@@ -4,6 +4,17 @@ import java.util.List;
 import java.util.Queue;
 
 public class LC199_t {
+    // 方法1: 层序遍历(BFS)
+    //   思路：按层遍历，每层只记录“最先看到的右侧节点”
+    //   做法：当前实现按“右->左”顺序入队，因此每层第一个出队即右视图节点
+    //   复杂度：时间O(n)，空间O(w)
+    //          w为最大层宽，最坏O(n)
+    //
+    // 方法2: 先右后左DFS
+    //   思路：按深度优先遍历，始终先访问右子树
+    //   判定：当dep首次到达某层时，当前节点就是该层右视图节点
+    //   复杂度：时间O(n)，空间O(h)
+    //          h为树高，递归栈最坏O(n)
     public List<Integer> rightSideView(TreeNode root) {
         if(root == null)
             return new ArrayList<>();

@@ -1,4 +1,12 @@
 public class LC208Tire_t {
+    // 方法: 前缀树(Trie/字典树)
+    //   结构：每个节点包含26个子节点指针(children[])和结束标记(end)
+    //   insert：逐字符向下走，没有就创建，末尾节点end置true
+    //   search：逐字符向下走，中途断开返回false，到达末尾检查end
+    //   startsWith：逐字符向下走，中途断开返回false，不检查end
+    //   特点：适合大量字符串的快速前缀匹配
+    //   复杂度：insert/search/startsWith 时间O(L)，空间O(26*L)
+    //          L为字符串长度
     class Trie {
         class Node {
             Node[] children;

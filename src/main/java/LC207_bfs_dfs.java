@@ -4,6 +4,24 @@ import java.util.*;
  * @Date: 2025/11/30
  */
 class LC207_bfs_dfs {
+    // 方法1: BFS拓扑排序(数组版)
+    //   思路：统计每门课入度need[]，入度为0的课程入队
+    //   过程：每学完一门课，遍历prerequisites更新依赖它的课程入度
+    //   判定：若最终学习数cnt == numCourses则无环
+    //   特点：只用数组，查找依赖时需要遍历所有边，效率较低
+    //   复杂度：时间O(n*e)，空间O(n)
+    //
+    // 方法2: BFS拓扑排序(邻接表版)
+    //   思路：用邻接表adjacency存储边，提高查找效率
+    //   过程：入度为0入队，学完后遍历adjacency.get(cur)更新后继入度
+    //   判定：cnt == numCourses表示所有课程都能学完
+    //   复杂度：时间O(n+e)，空间O(n+e)
+    //
+    // 方法3: DFS检测环
+    //   思路：对每个节点DFS，若遇到"正在访问中"的节点则存在环
+    //   状态：0=未访问，1=正在访问，2=已完成
+    //   判定：hasCycle为true则返回false
+    //   复杂度：时间O(n+e)，空间O(n+e)
     // 只用数组完成，「检查是否有新学科能学,加入学习队列」会影响查询效率
     public boolean canFinishBFSArray(int numCourses, int[][] prerequisites) {
         // 统计各学科的入度数量(还要先学几科)

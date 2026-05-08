@@ -10,6 +10,21 @@ public class LC25H_ll {
      * }
      */
 
+    // 方法1: 分组定位 + 区间反转函数
+    //   思路：每次先找到长度为k的一组[start, end]
+    //   处理：调用reverse(start, end)反转该组，再与前后链表重新连接
+    //   终止：剩余节点不足k个时停止，保持原顺序
+    //   复杂度：时间O(n)，空间O(1)
+    //
+    // 方法2: 分组定位 + 组内原地迭代反转
+    //   思路：先找到组尾cur和组后节点groupNxt
+    //   注意1：必须先确认当前组节点数是否达到k，不足k直接结束
+    //   注意2：反转前先保存groupNxt，避免改指针后丢失后续链表
+    //   注意3：连接顺序要正确
+    //         groupPre.next接新组头，旧组头(新组尾)接groupNxt
+    //         最后groupPre移动到旧组头，进入下一组
+    //   复杂度：时间O(n)，空间O(1)
+
     //下面这种方法比较好理解，思路一致
     public ListNode reverseKGroup(ListNode head, int k) {
         ListNode prehead = new ListNode(0, head);

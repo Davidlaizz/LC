@@ -1,6 +1,19 @@
 import java.util.Stack;
 
 public class LC236H_t {
+    // 方法1: 递归后序遍历(推荐)
+    //   思路：自底向上返回p/q或LCA，根据左右返回值判断当前节点是否是LCA
+    //   情况：若left、right都非空，则当前root是LCA
+    //         若只有一个非空，则向上传递那个非空结果
+    //         若都为空，返回null
+    //   终止：遇到p/q直接返回当前节点
+    //   复杂度：时间O(n)，空间O(h)
+    //
+    // 方法2: 迭代后序(null标记模板)
+    //   思路：用栈模拟后序遍历，用特殊标记val=10^6表示“子树含有p或q”
+    //   过程：出栈时判断左右子树标记情况，决定当前节点是否是LCA或继续向上传递
+    //   特点：避免递归，但逻辑更复杂
+    //   复杂度：时间O(n)，空间O(h)
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if(root == null) return null;
         if(root == q || root == p) return root; //找到就直接返回
@@ -26,7 +39,7 @@ public class LC236H_t {
             if (node != null) {
                 // ===== 入栈阶段 =====
                 stack.push(node);
-                stack.push(null); // 标记该节点“已访问”
+                stack.push(null); // 标记该节点”已访问”
 
                 if (node.right != null) stack.push(node.right);
                 if (node.left != null) stack.push(node.left);
@@ -62,3 +75,4 @@ public class LC236H_t {
         return null;
     }
 }
+

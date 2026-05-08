@@ -4,6 +4,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class LC39_bt {
+    // 方法: 回溯(递归+撤销)
+    //   目标：求无重复元素数组中和为target的所有组合（每个元素可重复选）
+    //   思路：用curSum记录当前路径和，startIndex控制起点避免重复组合
+    //   关键：递归时传i而不是i+1，表示当前元素可以重复选取
+    //   剪枝：先排序，若curSum + candidates[i] > target则break
+    //         后面的元素更大，不可能满足条件
+    //   终止：curSum == target 时收集结果
+    //   复杂度：时间O(n^target/min)，空间O(target/min)
+    //          取决于组合数量和路径长度
     List<List<Integer>> res = new ArrayList<>();
     LinkedList<Integer> row = new LinkedList<>();
     public List<List<Integer>> combinationSum(int[] candidates, int target) {

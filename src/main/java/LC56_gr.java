@@ -3,6 +3,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LC56_gr {
+    // 方法: 排序 + 贪心合并区间
+    //   思路：先按区间左端点升序排序，再线性扫描并维护当前合并区间[l, r]
+    //   合并：若下一区间左端点 <= r，说明重叠，更新r为两者右端点最大值
+    //   切换：若下一区间左端点 > r，说明不重叠，先保存当前区间，再开始新区间
+    //   收尾：循环结束后，别忘了把最后一个当前区间加入结果
+    //   复杂度：时间O(nlogn)，空间O(n)
+    //          排序O(nlogn)，结果列表最坏存n个区间
     public int[][] merge(int[][] intervals) {
         Arrays.sort(intervals, (interval1, interval2) -> interval1[0] - interval2[0]);
         List<int[]> list = new ArrayList<>();

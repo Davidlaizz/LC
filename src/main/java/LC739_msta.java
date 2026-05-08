@@ -1,7 +1,14 @@
 import java.util.Stack;
 
 public class LC739_msta {
-    // 单调栈：找到第一个大于cur的值 时间空间都是On
+    // 方法: 单调栈(递减)
+    //   目标：找到每个位置右边第一个更大元素的距离
+    //   思路：维护递减栈，栈顶遇到更大元素时弹出并计算距离
+    //   过程：遍历数组，若当前 > 栈顶，则栈顶找到了答案
+    //         弹出栈顶，res[index] = i - index
+    //   关键：栈存下标，栈顶到栈底递减
+    //   终止：遍历结束，栈中剩余元素答案为0（默认值）
+    //   复杂度：时间O(n)，空间O(n)
     public int[] dailyTemperatures(int[] temperatures) {
         int n = temperatures.length;
         int[] res = new int[n];

@@ -1,6 +1,16 @@
 import java.util.Stack;
 
 public class LC394_sta {
+    // 方法: 双栈
+    //   目标：解码字符串，如"3[a2[c]]" → "accaccacc"
+    //   思路：遇数字解析完整k，遇'['压栈数字和之前字符串，遇']'出栈构建
+    //   过程：
+    //     数字：k = 10 * k + c - '0'（处理多位数）
+    //     '['：压栈k和cur，重置k和cur
+    //     ']'：出栈次数和前串，构建pre += cur * times
+    //   终止：遍历结束返回cur
+    //   复杂度：时间O(n * max_k)，空间O(n)
+    //          max_k是最内层重复次数，StringBuilder可优化字符串拼接
     public String decodeString2(String s) {
         Stack<Integer> countNum = new Stack<>();
         Stack<String> countStr = new Stack<>();

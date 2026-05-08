@@ -2,6 +2,18 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class LC41H_hs_gr {
+    // 方法1: HashSet
+    //   思路：先把所有元素放入Set，再从1开始检查第一个缺失正数
+    //   范围：答案一定在[1, n+1]
+    //   特点：实现直观，但需要额外集合空间
+    //   复杂度：时间O(n)，空间O(n)
+    //
+    // 方法2: 原地交换(下标映射)
+    //   目标：让值x尽量放到下标x-1位置，即nums[i] == i+1
+    //   过程：遍历时对当前nums[i]反复交换，直到它无法再放到正确位置
+    //   限制：只处理1~n范围内的数；重复值通过nums[nums[i]-1] != nums[i]避免死循环
+    //   判定：再遍历一遍，第一个nums[i] != i+1的位置，其答案是i+1
+    //   复杂度：时间O(n)，空间O(1)
     public int firstMissingPositive(int[] nums) {
         Set<Integer> hs = new HashSet<>();
         int n = nums.length;

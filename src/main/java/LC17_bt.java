@@ -4,6 +4,14 @@ import java.util.List;
 import java.util.Map;
 
 public class LC17_bt {
+    // 方法: 回溯(递归+撤销)
+    //   目标：求数字字符串对应的所有字母组合
+    //   思路：每个数字对应多个字母，需要枚举所有组合
+    //   过程：用startIndex指向当前处理的数字位置
+    //         遍历该数字对应的每个字母，加入路径后递归下一数字
+    //   终止：sb.length() == digits.length() 时收集一个组合
+    //   复杂度：时间O(4^n)，空间O(n)
+    //          最坏每个数字对应4个字母，共4^n种组合
     List<String> res;
     Map<String, String> hm;
     public List<String> letterCombinations(String digits) {

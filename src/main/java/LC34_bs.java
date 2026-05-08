@@ -1,4 +1,12 @@
 public class LC34_bs {
+    // 方法: 二分查找
+    //   目标：在有序数组中找到target的起始和结束位置
+    //   方法1：先二分找到任意target位置，再向两边扩展找边界
+    //   方法2：两次二分，分别找左边界和右边界
+    //         找左边界：找到target后继续往左收缩(right = mid - 1)
+    //         找右边界：找到target后继续往右收缩(left = mid + 1)
+    //   复杂度：时间O(log n)，空间O(1)
+    //          方法1最坏O(n)，方法2始终O(log n)
     public int[] searchRange(int[] nums, int target) {
         int left = 0, right = nums.length - 1;
         int idx = -1;

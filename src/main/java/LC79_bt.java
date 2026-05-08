@@ -1,4 +1,13 @@
 public class LC79_bt {
+    // 方法: 回溯(DFS)
+    //   目标：在二维网格中搜索单词是否存在
+    //   思路：遍历每个格子作为起点，DFS四个方向匹配单词
+    //   状态：idx表示当前匹配到单词的第几个字符
+    //   访问标记：用board[row][col] = '0'标记已访问，回溯时恢复原值
+    //   剪枝：越界、字符不匹配、已找到结果时提前返回
+    //   终止：idx == word.length() - 1 且字符匹配时成功
+    //   复杂度：时间O(mn * 4^L)，空间O(L)
+    //          mn是网格大小，L是单词长度
     boolean res = false;
     public boolean exist(char[][] board, String word) {
         for(int i = 0; i < board.length; i++){

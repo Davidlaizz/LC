@@ -1,4 +1,18 @@
 public class LC72H_dp50 {
+    // 方法: 动态规划
+    //   目标：求将word1转换成word2的最少操作数(插入、删除、替换)
+    //   状态：dp[i][j]表示word1[0,i-1]转换成word2[0,j-1]的最少操作数
+    //   转移：
+    //     若word1[i-1]==word2[j-1]：dp[i][j]=dp[i-1][j-1]
+    //     否则：dp[i][j]=min(dp[i][j-1]+1, dp[i-1][j]+1, dp[i-1][j-1]+1)
+    //           分别对应：插入、删除、替换
+    //   边界：dp[i][0]=i(全删)，dp[0][j]=j(全插)
+    //   复杂度：时间O(m*n)，空间O(m*n)
+    //
+    // 方法2: 空间压缩
+    //   思路：用一维数组+pre变量记录dp[i-1][j-1]
+    //   关键：每轮开始前更新dp[0]=i，模拟二维的dp[i][0]=i
+    //   复杂度：时间O(m*n)，空间O(n)
     public int minDistance(String word1, String word2) {
         int n1 = word1.length();
         int n2 = word2.length();

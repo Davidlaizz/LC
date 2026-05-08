@@ -13,6 +13,18 @@ import java.util.Set;
  * }
  */
 public class LC160_ll_hs_2p {
+    // 方法1: HashSet
+    //   思路：先遍历链表A并记录所有节点地址，再遍历链表B
+    //   判定：B中第一个出现在Set里的节点，就是相交起点
+    //   特点：实现直观，依赖额外集合
+    //   复杂度：时间O(m+n)，空间O(m)
+    //
+    // 方法2: 双指针(推荐)
+    //   思路：h1先从headA出发，走到null后切到headB继续走
+    //         h2先从headB出发，走到null后切到headA继续走
+    //   结论：两者总路程相同，若有交点会在交点相遇
+    //         若无交点，最终都会为null并相遇
+    //   复杂度：时间O(m+n)，空间O(1)
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         Set<ListNode> hsa = new HashSet<>();
         ListNode it = headA;

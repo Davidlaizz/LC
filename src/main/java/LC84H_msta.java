@@ -2,10 +2,14 @@ import java.util.Arrays;
 import java.util.Stack;
 
 public class LC84H_msta {
-    // 接雨水的变种题目
-    // 用单调栈（栈顶最大）的方法优化了left、right数组的确定
-    // 暴力时间On*n 空间O1
-    // 优化后:  On   On
+    // 方法: 单调栈(递增)
+    //   目标：求柱状图中最大矩形面积
+    //   思路：对每个柱子，找左右第一个比它矮的柱子，计算宽度
+    //   过程：维护递增栈，栈顶遇到更矮元素时弹出并确定右边界
+    //         弹出时：right[index] = i，left[index] = 栈顶(弹出后)
+    //   面积计算：宽 = right[i] - left[i] - 1，高 = heights[i]
+    //   边界：left初始化-1，right初始化n
+    //   复杂度：时间O(n)，空间O(n)
     public int largestRectangleArea(int[] heights) {
         int n = heights.length;
         int[] left = new int[n];

@@ -2,6 +2,18 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 public class LC108_t {
+    // 方法1: 递归分治(推荐)
+    //   思路：每次取区间中点mid作为根节点
+    //   递归：左半区间构建左子树，右半区间构建右子树
+    //   关键：中点划分保证左右节点数量尽量平衡，从而满足高度平衡BST
+    //   复杂度：时间O(n)，空间O(logn)
+    //          额外空间来自递归调用栈，最坏退化可到O(n)
+    //
+    // 方法2: 迭代(BFS建树)
+    //   思路：队列中同步维护“待填节点 + 对应下标区间[l, r]”
+    //   过程：出队后计算中点，按左右子区间创建并入队子节点
+    //   特点：避免递归，但需要多个队列维护状态
+    //   复杂度：时间O(n)，空间O(n)
     //迭代：nums有序，根据下标选择mid，尽可能填满左右子树
     public TreeNode sortedArrayToBST(int[] nums) {
         return build(nums, 0, nums.length - 1);

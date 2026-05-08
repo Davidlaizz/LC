@@ -4,6 +4,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public class LC46_bt {
+    // 方法: 回溯(递归+撤销)
+    //   目标：求无重复元素数组的所有全排列
+    //   思路：用row记录当前路径，used[]标记已选元素
+    //   过程：每层遍历所有元素，跳过已选的，选一个加入row，递归后撤销
+    //   终止：row.size() == nums.length 时收集一个排列
+    //   去重：used[i]为true表示该位置元素已在当前路径中
+    //   复杂度：时间O(n*n!)，空间O(n)
+    //          共n!个排列，每个排列构建需要O(n)
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

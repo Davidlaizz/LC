@@ -3,6 +3,21 @@ import java.util.List;
 import java.util.Stack;
 
 public class LC98_t {
+    // 方法1: 递归中序 + 收集数组
+    //   思路：BST中序遍历结果应严格递增
+    //   处理：先中序收集到res，再线性检查是否存在逆序
+    //   复杂度：时间O(n)，空间O(n)
+    //
+    // 方法2: 迭代中序 + 前驱比较
+    //   思路：中序遍历过程中，当前值必须大于前一个访问值pre
+    //   优势：无需额外数组，边遍历边判断
+    //   复杂度：时间O(n)，空间O(h)
+    //
+    // 方法3: 递归区间约束(推荐)
+    //   思路：每个节点必须落在(lower, upper)开区间内
+    //   递归：左子树上界收紧为root.val，右子树下界收紧为root.val
+    //   关键：用long边界避免int极值比较问题
+    //   复杂度：时间O(n)，空间O(h)
     //第一想法：平衡二叉树中序遍历是严格递增
     List<Integer> res = new ArrayList<>();
     public boolean isValidBST(TreeNode root) {

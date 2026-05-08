@@ -12,6 +12,16 @@ import java.util.Set;
  * }
  */
 public class LC142_ll_hs_2p {
+    // 方法1: HashSet
+    //   思路：遍历链表并记录访问过的节点地址
+    //   判定：首次重复访问到的节点就是入环点
+    //   复杂度：时间O(n)，空间O(n)
+    //
+    // 方法2: 快慢指针 + 数学结论(推荐)
+    //   第一步：快慢指针判断是否有环，并在环内相遇
+    //   第二步：一个指针从head出发，另一个从相遇点出发，同速前进
+    //   结论：两者再次相遇的位置就是入环点
+    //   复杂度：时间O(n)，空间O(1)
     public ListNode detectCycle(ListNode head) {
         Set<ListNode> hs = new HashSet<>();
         ListNode it = head;
