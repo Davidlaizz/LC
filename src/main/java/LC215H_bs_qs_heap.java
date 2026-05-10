@@ -13,22 +13,22 @@ public class LC215H_bs_qs_heap {
     //   | 指针     | 双指针从两端向中间        | 单指针从左向右          |
     //   | pivot    | 选中间元素，避免死循环    | 选最右元素              |
     //   | 分区结果 | [l, j] [j+1, r]，pivot在两边 | [l, i-1] [i, r]，pivot在i |
-    //   | 交换次数 | 多，相等元素也会交换      | 少，只交换<pivot的元素   |
+    //   | 交换次数 | 少                        | 多                     |
     //   | 适用场景 | 重复元素多时推荐          | 重复元素少时推荐        |
-    //
-    //   为什么Hoare交换多但更优？
-    //   Lomuto：相等元素不交换，全堆在右边 → 分区[空, n-1]极不平衡 → O(n²)
-    //   Hoare：相等元素会交换，分布在两边 → 分区[n/2, n/2]平衡 → 避免退化
-    //
+    //   为什么Hoare交换少
+    //   Lomuto：元素<pivot就交换，相等元素全留一边 → 升序时退化 O(n²)
+    //   Hoare：ij分别找出符合条件的值才交换 
+
     // 方法2: 小根堆
     //   目标：维护前k大的元素，堆顶即为第k大
     //   思路：构建size=k的小根堆，遍历剩余元素，大于堆顶则替换
     //   过程：buildHeap构建堆，maintain维护堆性质
     //   复杂度：时间O(n log k)，空间O(k)
     public int findKthLargest(int[] nums, int k) {
-        return quickSelect(nums, 0, nums.length - 1, k);
+        return quickSelectHoare(nums, 0, nums.length - 1, k);
+        // return quickSelectLomuto(nums, 0, nums.length - 1, k);
     }
-    public int quickSelect(int[] nums, int l, int r, int k) {
+    public int quickSelectHoare(int[] nums, int l, int r, int k) {
         if (l == r) {
             return nums[l];
         }
@@ -36,9 +36,9 @@ public class LC215H_bs_qs_heap {
         // k表示第几大， n - k表示第k大的具体下标
         int p = hoarePartition(nums, l, r);
         if (n - k <= p) {
-            return quickSelect(nums, l, p, k);
+            return quickSelectHoare(nums, l, p, k);
         } else {
-            return quickSelect(nums, p + 1, r, k);
+            return quickSelectHoare(nums, p + 1, r, k);
         }
     }
     // [l, j] [j + 1, r] pivot可能在两边的任意一边
@@ -67,23 +67,43 @@ public class LC215H_bs_qs_heap {
         return j;
     }
 
-    // [l, r] 这个算法对重复元素或者顺序元素会退化到On^2
-     public int lomutoPartition(int[] nums, int l, int r) {
-         int pivot = nums[r];
-//         System.out.println("pivot " + pivot);
-         int i = l, j = l;
-         while (j < r) { // r是枢轴位置
-             if (nums[j] < pivot) {
-                 swap(nums, i, j);
-                 // System.out.println(Arrays.toString(nums));
-                 i++;
-             }
-             j++;
-         }
-         // System.out.println(Arrays.toString(nums));
-         swap(nums, i, r);
-         return i; // 枢轴的最后位置
-     }
+    public int quickSelectLomuto(int[] nums, int l, int r, int k) {
+        if (l == r) {
+            return nums[l];
+        }
+        int n = nums.length;
+        int p = lomutoPartition(nums, l, r);
+        if (p == n - k) {
+            return nums[p];
+        } else if (p < n - k) {
+            return quickSelectLomuto(nums, p + 1, r, k);
+        } else {
+            return quickSelectLomuto(nums, l, p - 1, k);
+        }
+    }
+    // [l, r] 这个算法对重复元素或者顺序元素会退化到On^2，
+    //        用if (i != j) 跳过自交换
+    public int lomutoPartition(int[] nums, int l, int r) {
+        int pivot = nums[r];
+        // System.out.println("pivot " + pivot);
+        int i = l, j = l;
+        while (j < r) {
+            if (nums[j] < pivot) {
+                if (i != j) { // 跳过自交换
+                    swap(nums, i, j);
+                }
+                // System.out.println(Arrays.toString(nums));
+                i++;
+            }
+            j++;
+        }
+        // System.out.println(Arrays.toString(nums));
+        if (i != r) {
+            swap(nums, i, r);
+        }
+        return i; // 枢轴的最后位置
+    }
+
     public void swap(int[] nums, int l, int r) {
         int temp = nums[l];
         nums[l] = nums[r];
