@@ -27,13 +27,14 @@ public class LC3_sw_hs {
         for (int l = 0, r = 0 ; r < n ; r++) {
             //当前考虑的元素
             char c = s.charAt(r);
-            while (l <= r && hs.contains(c)) {//区间[left,right]不符合题意
+            while (l <= r && hs.contains(c)) {//区间[left,right]不符合题意，删除不满足条件的左边界元素
                 //扩展左边界,删除之前的c以及c之前的元素
                 hs.remove(s.charAt(l));
                 l++;
             }
             //区间[left,right]符合题意，统计相关信息
             res = Math.max(res, r - l + 1);
+            //回加右边界的元素
             hs.add(c);
         }
         return res;
