@@ -3,6 +3,89 @@ import java.util.Map;
 
 public class LC146_ll {
     class LRUCache {
+        // 双向链表 + HashMap
+        class DLLNode {
+            int key;
+            int value;
+            DLLNode pre;
+            DLLNode next;
+            public DLLNode() {};
+            public DLLNode(int key, int value) {
+                this.key = key;
+                this.value = value;
+            }
+        }
+        int size;
+        int capacity;
+        Map<Integer, DLLNode> hm = new HashMap<>();
+        DLLNode head, tail;
+
+        public LRUCache(int capacity) {
+            this.capacity = capacity;
+            this.size = 0;
+            head = new DLLNode();
+            tail = new DLLNode();
+            head.next = tail;
+            tail.pre = head;
+        }
+
+        public int get(int key) {
+            if (hm.containsKey(key)) {
+                // movetohead
+                DLLNode node = hm.get(key);
+                moveToHead(node);
+                return node.value;
+            } else
+                return -1;
+        }
+
+        public void put(int key, int value) {
+            if (hm.containsKey(key)) {
+                DLLNode node = hm.get(key);
+                node.value = value;
+                moveToHead(node);
+            } else {
+                DLLNode node = new DLLNode(key, value);
+                if (size == capacity) {
+                    addToHead(node);
+                    hm.put(key, node);
+
+                    hm.remove(tail.pre.key); //必须先removeHM
+                    removeNode(tail.pre);
+                } else {
+                    addToHead(node);
+                    hm.put(key, node);
+                    size++;
+                }
+            }
+        }
+
+        public void moveToHead(DLLNode node) {
+            removeNode(node);
+            addToHead(node);
+        }
+        public void removeNode(DLLNode node) {
+            node.pre.next = node.next;
+            node.next.pre = node.pre;
+        }
+        public void addToHead(DLLNode node) {
+            // 不考虑cap和size
+            node.pre = head;
+            node.next = head.next;
+            head.next = node;
+            node.next.pre = node;
+        }
+    }
+
+    /**
+     * Your LRUCache object will be instantiated and called as such:
+     * LRUCache obj = new LRUCache(capacity);
+     * int param_1 = obj.get(key);
+     * obj.put(key,value);
+     */
+
+   /**
+    class LRUCache {
         // 方法: HashMap + 双向链表
         //   目标：在O(1)时间完成get/put，并维护最近最少使用淘汰策略
         //   结构：HashMap负责key到节点的O(1)定位，双向链表负责访问顺序维护
@@ -98,6 +181,8 @@ public class LC146_ll {
         }
     }
 
+    */
+
 /**
  * Your LRUCache object will be instantiated and called as such:
  * LRUCache obj = new LRUCache(capacity);
@@ -107,3 +192,5 @@ public class LC146_ll {
 
 
 }
+
+
