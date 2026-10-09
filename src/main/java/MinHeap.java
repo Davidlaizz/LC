@@ -39,6 +39,7 @@ public class MinHeap {
 
     // 上滤
     public void siftUp(int index) {
+        // 为什么很多教材写 parent = i/2:那是 1-based 存法(下标 1 开始，孩子是 2i 和 2i+1)。0-based 一切都要平移，父节点就是 (i-1)/2、孩子是 2i+1/2i+2
         int parentIndex = (index - 1) / 2;
         int swapIndex = index;
         // 小顶堆：比父节点小才会上升

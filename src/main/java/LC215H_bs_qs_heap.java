@@ -12,7 +12,7 @@ public class LC215H_bs_qs_heap {
     //   |----------|--------------------------|-------------------------|
     //   | 指针     | 双指针从两端向中间        | 单指针从左向右          |
     //   | pivot    | 选中间元素，避免死循环    | 选最右元素              |
-    //   | 分区结果 | [l, j] [j+1, r]，pivot在两边 | [l, i-1] [i, r]，pivot在i |
+    //   | 分区结果 | [l, j] [j+1, r]，pivot在两边 | [l, i-1] [i + 1, r]，pivot在i |
     //   | 交换次数 | 少                        | 多                     |
     //   | 适用场景 | 重复元素多时推荐          | 重复元素少时推荐        |
     //   为什么Hoare交换少
@@ -111,7 +111,7 @@ public class LC215H_bs_qs_heap {
     }
 
     public int findKthLargest2(int[] nums, int k) {
-        int[] arr = Arrays.copyOf(nums, k);
+        int[] arr = Arrays.copyOf(nums, k); // arr[0, k-1] k个元素
         MinHeap h = new MinHeap(arr, k);
         h.buildHeap();
         for (int i = k; i < nums.length; i++) {
