@@ -78,7 +78,20 @@ public class LC25H_ll {
         return tail;
     }
 
-
+    // 同LC206
+    public ListNode reverse2(ListNode head, ListNode tail) {
+        ListNode pre = null, cur = head;
+        ListNode end = tail.next; // 防止tail.next 在循环中被修改
+        while (cur != end) { // 同LC206
+            ListNode tmp = cur.next;
+            // 反转
+            cur.next = pre;
+            //迭代
+            pre = cur;
+            cur = tmp;
+        }
+        return pre;
+    }
 
     public ListNode reverseKGroup2(ListNode head, int k) {
         ListNode prehead = new ListNode(0, head);
