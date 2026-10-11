@@ -75,6 +75,7 @@ public class LC438_sw {
         }
 
         for (int i = 0; i < sLen - pLen; ++i) {
+            // 移出
             if (count[s.charAt(i) - 'a'] == 1) {
                 --differ;
             } else if (count[s.charAt(i) - 'a'] == 0) {
@@ -82,6 +83,7 @@ public class LC438_sw {
             }
             --count[s.charAt(i) - 'a'];
 
+            // 引入
             if (count[s.charAt(i + pLen) - 'a'] == -1) {
                 --differ;
             } else if (count[s.charAt(i + pLen) - 'a'] == 0) {
